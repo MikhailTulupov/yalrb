@@ -1,4 +1,4 @@
-package ru.yalrb.yalrb;
+package ru.yalrb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

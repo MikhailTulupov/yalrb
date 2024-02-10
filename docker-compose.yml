@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: yalrb
+      POSTGRES_PASSWORD: PeDTifs
+      POSTGRES_DB: yalrb
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
