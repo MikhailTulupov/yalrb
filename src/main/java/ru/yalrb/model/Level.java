@@ -8,6 +8,12 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Level} for the ability to score
+ * points for {@link Account} users for various actions on the site and fill their
+ * {@link Level} on the site with these points. Entity {@link Level} have many relationships with others
+ * entities: {@link Account} and {@link LevelType}.
+ */
 @AllArgsConstructor
 @Data
 @Builder

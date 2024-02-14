@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link AppealState} for providing state {@link AppealState} to {@link Appeal}.
+ * Entity {@link AppealState} dependent of {@link Appeal}.
+ */
 @AllArgsConstructor
 @Builder
 @Data

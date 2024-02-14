@@ -9,6 +9,11 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Appeal} for providing an opportunity leave appeal to moderators.
+ * This entity {@link Appeal} have many relationships with others entities:
+ * {@link Account} user, {@link AppealState} and {@link Account} moderator.
+ */
 @AllArgsConstructor
 @Builder
 @Data

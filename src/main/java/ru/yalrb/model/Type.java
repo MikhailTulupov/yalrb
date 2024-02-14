@@ -7,7 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-
+/**
+ * This class represents entity {@link Type} it`s dependent of {@link Object}.
+ * This class means All objects can have type, such like 'Cultural heritage site'.
+ */
 @AllArgsConstructor
 @Data
 @Builder

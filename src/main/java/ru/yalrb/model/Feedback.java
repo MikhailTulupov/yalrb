@@ -9,6 +9,11 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Feedback}. Class {@link Feedback} providing opportunity
+ * to user leave feedback to {@link Object}. This entity have many relationships with others entities:
+ * {@link Account} and {@link Object}.
+ */
 @AllArgsConstructor
 @Data
 @Builder

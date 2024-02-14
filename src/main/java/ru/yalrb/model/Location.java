@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Location} it`s dependent of {@link Object}
+ * and represents location some place provides longitude and latitude this {@link Object}.
+ */
 @AllArgsConstructor
 @Builder
 @Data

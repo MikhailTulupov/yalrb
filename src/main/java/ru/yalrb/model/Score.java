@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * This class represents {@link Score} witch dependent of {@link Feedback}. This entity provide opportunity for user
+ * leave score on feedback.
+ */
 @AllArgsConstructor
 @Data
 @Builder

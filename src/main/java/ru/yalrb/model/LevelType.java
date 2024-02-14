@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link LevelType} it`s dependent of {@link Level}.
+ * Entity {@link LevelType} contains various achievements for the user when they reach a certain level.
+ */
 @AllArgsConstructor
 @Data
 @Builder

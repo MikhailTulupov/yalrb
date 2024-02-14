@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Rate} it`s dependent of {@link Object} it`s represent rate this object.
+ */
 @AllArgsConstructor
 @Data
 @Builder
