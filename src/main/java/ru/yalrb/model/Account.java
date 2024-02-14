@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Account} for site user, witch can log in or sign in.
+ * This entity {@link Account} have many relationships with others entities:
+ * {@link Role}, {@link Level}, {@link Feedback}, {@link Score}, {@link Object} and {@link State}.
+ */
 @AllArgsConstructor
 @Builder
 @Data

@@ -7,6 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link State} witch mean objects and users can have many states,
+ * example {@link Object} can have such states: registered, confirmed, working
+ * and {@link Account} user can have some states like objects.
+ */
 @AllArgsConstructor
 @Builder
 @Data

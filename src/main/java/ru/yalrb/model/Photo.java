@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Photo} it`s dependent of entity {@link Object}, it`s represents image,
+ * witch user can load to {@link Object} and display on site.
+ */
 @AllArgsConstructor
 @Data
 @Builder

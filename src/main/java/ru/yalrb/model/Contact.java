@@ -7,7 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-
+/**
+ * This class represents entity {@link Contact} it`s dependent of {@link Object}.
+ * Entity {@link Contact} contains all required data for contacting to owner this {@link Object}.
+ */
 @AllArgsConstructor
 @Data
 @Builder

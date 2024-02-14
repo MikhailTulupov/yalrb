@@ -8,6 +8,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This class represents entity {@link Object} this entity is the main in this project, and it
+ * represents itself as some object where something will happen in real life, for example,
+ * such a place may be an object of cultural heritage. This entity {@link Object} have many
+ * relationships with others entities: {@link Account}, {@link Type}, {@link Contact},
+ * {@link Rate}, {@link Location}, {@link Feedback}, {@link Photo} and {@link State}.
+ */
 @AllArgsConstructor
 @Builder
 @Data
