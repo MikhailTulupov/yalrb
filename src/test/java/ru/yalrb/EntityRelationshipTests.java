@@ -110,17 +110,17 @@ public class EntityRelationshipTests {
 
         stateRegistry = State.builder()
                 .name("Registry")
-                .Description("test")
+                .description("test")
                 .build();
 
         stateConfirm = State.builder()
                 .name("Confirm")
-                .Description("Test")
+                .description("Test")
                 .build();
 
         stateWork = State.builder()
                 .name("Work")
-                .Description("Test")
+                .description("Test")
                 .build();
 
         object = Object.builder()

@@ -1,5 +1,6 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,5 +33,6 @@ public class LevelType {
     @ToString.Exclude
     @Builder.Default
     @OneToMany(mappedBy = "levelType")
+    @JsonManagedReference(value = "level-type")
     private Set<Level> levels = new HashSet<>();
 }

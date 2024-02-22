@@ -1,5 +1,7 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,10 +27,12 @@ public class Score {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_guid")
+    @JsonBackReference(value = "account-scores")
     private Account account;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "feedback_guid")
+    @JsonIgnore
     private Feedback feedback;
 
     private int score;
