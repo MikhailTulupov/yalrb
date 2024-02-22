@@ -1,5 +1,6 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,11 +27,13 @@ public class Level {
     private UUID id;
 
     @OneToOne(mappedBy = "level")
+    @JsonBackReference(value = "account-level")
     private Account account;
 
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "level_type_guid")
+    @JsonBackReference(value = "level-type")
     private LevelType levelType;
 
     private int score;

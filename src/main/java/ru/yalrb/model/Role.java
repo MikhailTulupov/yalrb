@@ -1,5 +1,6 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,9 @@ import java.util.UUID;
 @Entity
 @EqualsAndHashCode(exclude = "accounts")
 @RequiredArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,5 +36,6 @@ public class Role {
     @OneToMany(mappedBy = "role")
     @ToString.Exclude
     @Builder.Default
+    @JsonIgnore
     private Set<Account> accounts = new HashSet<>();
 }

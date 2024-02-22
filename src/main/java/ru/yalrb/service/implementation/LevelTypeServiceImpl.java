@@ -1,10 +1,13 @@
 package ru.yalrb.service.implementation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yalrb.model.LevelType;
+import ru.yalrb.repository.LevelTypeRepository;
 import ru.yalrb.service.LevelTypeService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -12,20 +15,9 @@ import java.util.UUID;
  */
 @Service
 public class LevelTypeServiceImpl implements LevelTypeService {
-    @Override
-    public LevelType save(LevelType entity) {
-        return null;
-    }
 
-    @Override
-    public LevelType getById(UUID id) {
-        return null;
-    }
-
-    @Override
-    public List<LevelType> getAll() {
-        return null;
-    }
+    @Autowired
+    LevelTypeRepository levelTypeRepository;
 
     @Override
     public LevelType update(UUID id) {
@@ -33,7 +25,23 @@ public class LevelTypeServiceImpl implements LevelTypeService {
     }
 
     @Override
-    public void delete(UUID id) {
+    public LevelType save(LevelType entity) {
+        return levelTypeRepository.save(entity);
+    }
 
+    @Override
+    public LevelType getById(UUID id) {
+        Optional<LevelType> levelType = levelTypeRepository.findById(id);
+        return levelType.orElseGet(LevelType::new);
+    }
+
+    @Override
+    public List<LevelType> getAll() {
+        return levelTypeRepository.findAll();
+    }
+
+    @Override
+    public void delete(UUID id) {
+        levelTypeRepository.deleteById(id);
     }
 }

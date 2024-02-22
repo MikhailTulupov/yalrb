@@ -1,5 +1,7 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,42 +31,50 @@ public class Object {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_guid")
+    @JsonBackReference(value = "account-objects")
     private Account account;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_guid")
+    @JsonIgnore
     private Type type;
 
 
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_guid")
+    @JsonIgnore
     private Contact contact;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rate_guid")
+    @JsonIgnore
     private Rate rate;
 
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "location_guid")
+    @JsonIgnore
     private Location location;
 
     @OneToMany(mappedBy = "object")
     @Builder.Default
     @ToString.Exclude
+    @JsonIgnore
     private Set<Feedback> feedbacks = new HashSet<>();
 
 
     @OneToMany(mappedBy = "object")
     @Builder.Default
     @ToString.Exclude
+    @JsonIgnore
     private Set<Photo> photos = new HashSet<>();
 
     @ManyToMany(mappedBy = "objects",
             cascade = CascadeType.MERGE)
     @Builder.Default
     @ToString.Exclude
+    @JsonIgnore
     private Set<State> states = new HashSet<>();
 
     @Column(nullable = false)

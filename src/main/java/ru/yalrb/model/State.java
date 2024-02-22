@@ -1,5 +1,6 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,9 @@ import java.util.UUID;
 @Entity
 @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"objects", "accounts"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,7 +32,7 @@ public class State {
     private String name;
 
     @Column(nullable = false)
-    private String Description;
+    private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "object_state",

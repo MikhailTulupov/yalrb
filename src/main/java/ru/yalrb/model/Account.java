@@ -1,5 +1,6 @@
 package ru.yalrb.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,9 @@ import java.util.UUID;
 @Entity
 @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"feedbacks", "objects", "scores", "states"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -32,6 +36,7 @@ public class Account {
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "level_guid")
+    @JsonManagedReference(value = "account-level")
     private Level level;
 
     @Column(nullable = false)
@@ -48,16 +53,19 @@ public class Account {
     @OneToMany(mappedBy = "account")
     @ToString.Exclude
     @Builder.Default
+    @JsonManagedReference(value = "account-feedbacks")
     private Set<Feedback> feedbacks = new HashSet<>();
 
     @OneToMany(mappedBy = "account")
     @ToString.Exclude
     @Builder.Default
+    @JsonManagedReference(value = "account-scores")
     private Set<Score> scores = new HashSet<>();
 
     @OneToMany(mappedBy = "account")
     @ToString.Exclude
     @Builder.Default
+    @JsonManagedReference(value = "account-objects")
     private Set<Object> objects = new HashSet<>();
 
     @ManyToMany(mappedBy = "accounts")
