@@ -7,7 +7,7 @@ import ru.yalrb.model.Role;
 import ru.yalrb.service.RoleService;
 
 @Component
-public class DataRole implements CommandLineRunner {
+public class RoleData implements CommandLineRunner {
 
     @Autowired
     private RoleService roleService;

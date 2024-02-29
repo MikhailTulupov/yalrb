@@ -2,6 +2,8 @@ package ru.yalrb.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.yalrb.dto.AccountDTO;
+import ru.yalrb.mapper.AccountMapper;
 import ru.yalrb.model.Account;
 import ru.yalrb.model.Level;
 import ru.yalrb.model.LevelType;
@@ -20,7 +22,6 @@ import java.util.UUID;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
-
     @Autowired
     AccountRepository accountRepository;
 
@@ -31,12 +32,7 @@ public class AccountServiceImpl implements AccountService {
     LevelTypeService levelTypeService;
 
     @Override
-    public Account update(UUID id) {
-        return null;
-    }
-
-    @Override
-    public Account save(Account entity) {
+    public AccountDTO save(AccountDTO entity) {
         List<Role> roles = roleService.getAll();
         Role role = roles.stream().filter(element -> element.getName().equals("User")).toList().getFirst();
         List<LevelType> levelTypes = levelTypeService.getAll();
@@ -45,23 +41,30 @@ public class AccountServiceImpl implements AccountService {
                 .score(0)
                 .levelType(levelType)
                 .build();
-        entity.setLevel(level);
-        entity.setCreatedDateTime(new Date());
-        entity.setRole(role);
 
-        return accountRepository.save(entity);
+        Account account = AccountMapper.INSTANCE.convertToEntity(entity);
+
+        account.setLevel(level);
+        account.setCreatedDateTime(new Date());
+        account.setRole(role);
+
+        return AccountMapper.INSTANCE.convertToDTO(accountRepository.save(account));
     }
 
     @Override
-    public Account getById(UUID id) {
+    public AccountDTO getById(UUID id) {
         return null;
     }
 
     @Override
-    public List<Account> getAll() {
+    public List<AccountDTO> getAll() {
         return null;
     }
 
+    @Override
+    public AccountDTO update(UUID id) {
+        return null;
+    }
 
     @Override
     public void delete(UUID id) {

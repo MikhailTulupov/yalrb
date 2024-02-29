@@ -7,7 +7,7 @@ import ru.yalrb.model.LevelType;
 import ru.yalrb.service.LevelTypeService;
 
 @Component
-public class DataLevelType implements CommandLineRunner {
+public class LevelTypeData implements CommandLineRunner {
 
     @Autowired
     private LevelTypeService levelTypeService;
