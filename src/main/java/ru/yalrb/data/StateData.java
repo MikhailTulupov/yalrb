@@ -7,7 +7,7 @@ import ru.yalrb.model.State;
 import ru.yalrb.service.StateService;
 
 @Component
-public class DataState implements CommandLineRunner {
+public class StateData implements CommandLineRunner {
 
     @Autowired
     StateService stateService;
