@@ -64,7 +64,8 @@ public class Object {
     private Set<Feedback> feedbacks = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "object")
+    @OneToMany(mappedBy = "object",
+            cascade = CascadeType.ALL)
     @Builder.Default
     @ToString.Exclude
     @JsonIgnore

@@ -24,21 +24,22 @@ public class Photo {
     @Column(nullable = false)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     @JoinColumn(name = "object_guid")
     private Object object;
 
     @Lob
     @Basic(fetch = FetchType.EAGER)
     @Column(nullable = false)
-    private Byte[] image;
+    private byte[] image;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date loadedDateTime;
 }
