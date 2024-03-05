@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * This class represents entity {@link Object} this entity is the main in this project, and it
@@ -69,7 +66,7 @@ public class Object {
     @Builder.Default
     @ToString.Exclude
     @JsonIgnore
-    private Set<Photo> photos = new HashSet<>();
+    private List<Photo> photos = new ArrayList<>();
 
     @ManyToMany(mappedBy = "objects",
             cascade = CascadeType.MERGE)

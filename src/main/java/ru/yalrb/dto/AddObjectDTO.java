@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Builder
 @Schema
-public class ObjectDTO {
-    private String id;
+public class AddObjectDTO {
     private String accountId;
     private String name;
     private String type;
@@ -28,5 +28,5 @@ public class ObjectDTO {
     private String address;
     private String longitude;
     private String latitude;
-    private List<String> photos = new ArrayList<>();
+    private List<MultipartFile> photos = new ArrayList<>();
 }
