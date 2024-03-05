@@ -28,13 +28,12 @@ public class Photo {
     @JoinColumn(name = "object_guid")
     private Object object;
 
-    @Lob
-    @Basic(fetch = FetchType.EAGER)
-    @Column(nullable = false)
-    private Byte[] image;
+    private String path;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
+
+    private String type;
 
     @Column(nullable = false)
     private String description;
