@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_USER: yalrb
+      POSTGRES_USER: yltrip
       POSTGRES_PASSWORD: PeDTifs
-      POSTGRES_DB: yalrb
+      POSTGRES_DB: yltrip
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ./pgdata:/var/lib/postgresql/data
