@@ -1,0 +1,15 @@
+package ru.yaltrip.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import ru.yaltrip.model.State;
+
+import java.util.UUID;
+
+/**
+ * The general purpose of this interface is to store information
+ * about the {@link State} type and provide an open CRUD.
+ */
+@Repository
+public interface StateRepository extends JpaRepository<State, UUID> {
+}
