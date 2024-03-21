@@ -23,7 +23,7 @@ public class EntityRelationshipTests {
     ObjectRepository objectRepository;
 
     @Autowired
-    AccountRepository accountRepository;
+    UserRepository userRepository;
 
     @Autowired
     TypeRepository typeRepository;
@@ -41,16 +41,13 @@ public class EntityRelationshipTests {
     StateRepository stateRepository;
 
     @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
     LevelRepository levelRepository;
 
     @Autowired
     LevelTypeRepository levelTypeRepository;
 
     Object object;
-    Account account;
+    User user;
     Role role;
     Level level;
     LevelType levelType;
@@ -68,11 +65,6 @@ public class EntityRelationshipTests {
 
     @BeforeEach
     void initData() {
-        role = Role.builder()
-                .name("moderator")
-                .description("moderator")
-                .build();
-
         levelType = LevelType.builder()
                 .name("Stranger")
                 .description("Test")
@@ -83,12 +75,12 @@ public class EntityRelationshipTests {
                 .levelType(levelType)
                 .build();
 
-        account = Account.builder()
-                .login("admin")
+        user = User.builder()
+                .username("admin")
                 .password("admin")
                 .level(level)
                 .createdDateTime(new Date())
-                .role(role)
+                .role(Role.ROLE_USER)
                 .build();
 
         type = Type.builder()
@@ -124,7 +116,7 @@ public class EntityRelationshipTests {
                 .build();
 
         object = Object.builder()
-                .account(account)
+                .user(user)
                 .type(type)
                 .contact(contact)
                 .location(location)
@@ -134,8 +126,7 @@ public class EntityRelationshipTests {
                 .fullDescription("test")
                 .build();
 
-        roleRepository.save(role);
-        accountRepository.save(account);
+        userRepository.save(user);
         typeRepository.save(type);
         stateRepository.save(stateRegistry);
         stateRepository.save(stateWork);

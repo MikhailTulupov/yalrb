@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * This class represents entity {@link Appeal} for providing an opportunity leave appeal to moderators.
  * This entity {@link Appeal} have many relationships with others entities:
- * {@link Account} user, {@link AppealState} and {@link Account} moderator.
+ * {@link User} user, {@link AppealState} and {@link User} moderator.
  */
 @AllArgsConstructor
 @Builder
@@ -27,7 +27,7 @@ public class Appeal {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_guid")
-    private Account account;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appeal_state_guid")
@@ -35,7 +35,7 @@ public class Appeal {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "moderator_guid")
-    private Account moderator;
+    private User moderator;
 
     @Column(nullable = false)
     private String email;

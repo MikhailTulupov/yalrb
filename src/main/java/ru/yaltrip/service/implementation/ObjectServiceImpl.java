@@ -2,13 +2,13 @@ package ru.yaltrip.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.yaltrip.model.Account;
 import ru.yaltrip.model.Object;
 import ru.yaltrip.model.Photo;
 import ru.yaltrip.model.Type;
-import ru.yaltrip.repository.AccountRepository;
+import ru.yaltrip.model.User;
 import ru.yaltrip.repository.ObjectRepository;
 import ru.yaltrip.repository.TypeRepository;
+import ru.yaltrip.repository.UserRepository;
 import ru.yaltrip.service.ObjectService;
 
 import java.util.List;
@@ -18,17 +18,17 @@ import java.util.UUID;
 public class ObjectServiceImpl implements ObjectService {
     final ObjectRepository objectRepository;
     final TypeRepository typeRepository;
-    final AccountRepository accountRepository;
+    final UserRepository userRepository;
 
     private final String TYPE_NAME = "Место исторического наследия";
 
     @Autowired
     public ObjectServiceImpl(ObjectRepository objectRepository,
                              TypeRepository typeRepository,
-                             AccountRepository accountRepository) {
+                             UserRepository userRepository) {
         this.objectRepository = objectRepository;
         this.typeRepository = typeRepository;
-        this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -38,14 +38,14 @@ public class ObjectServiceImpl implements ObjectService {
                 .filter(t -> t.getName().equals(TYPE_NAME))
                 .toList().getFirst();
 
-        Account account = accountRepository.findById(entity.getAccount().getId())
-                .orElseGet(Account::new);
+        User user = userRepository.findById(entity.getUser().getId())
+                .orElseGet(User::new);
 
-        for(Photo photo: entity.getPhotos()) {
+        for (Photo photo : entity.getPhotos()) {
             photo.setObject(entity);
         }
 
-        entity.setAccount(account);
+        entity.setUser(user);
         entity.setType(type);
 
         return objectRepository.save(entity);

@@ -16,7 +16,7 @@ import ru.yaltrip.model.Photo;
 @Mapper
 public interface ObjectMapper {
     @Mappings({
-            @Mapping(target = "accountId", source = "object.account.id"),
+            @Mapping(target = "accountId", source = "object.user.id"),
             @Mapping(target = "type", source = "object.type.name"),
             @Mapping(target = "phoneNumber", source = "object.contact.phoneNumber"),
             @Mapping(target = "address", source = "object.contact.address"),
@@ -31,7 +31,7 @@ public interface ObjectMapper {
     ObjectDTO convertToDTO(Object object);
 
     @Mappings({
-            @Mapping(target = "account.id", source = "addObjectDTO.accountId"),
+            @Mapping(target = "user.id", source = "addObjectDTO.accountId"),
             @Mapping(target = "type.name", source = "addObjectDTO.type"),
             @Mapping(target = "contact.phoneNumber", source = "addObjectDTO.phoneNumber"),
             @Mapping(target = "contact.email", source = "addObjectDTO.email"),

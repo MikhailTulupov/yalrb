@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * This class represents entity {@link Feedback}. Class {@link Feedback} providing opportunity
  * to user leave feedback to {@link Object}. This entity have many relationships with others entities:
- * {@link Account} and {@link Object}.
+ * {@link User} and {@link Object}.
  */
 @AllArgsConstructor
 @Data
@@ -31,7 +31,7 @@ public class Feedback {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_guid")
-    private Account account;
+    private User user;
 
     @Column(nullable = false)
     private String description;

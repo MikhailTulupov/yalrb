@@ -12,7 +12,7 @@ import java.util.UUID;
  * This class represents entity {@link Object} this entity is the main in this project, and it
  * represents itself as some object where something will happen in real life, for example,
  * such a place may be an object of cultural heritage. This entity {@link Object} have many
- * relationships with others entities: {@link Account}, {@link Type}, {@link Contact},
+ * relationships with others entities: {@link User}, {@link Type}, {@link Contact},
  * {@link Rate}, {@link Location}, {@link Feedback}, {@link Photo} and {@link State}.
  */
 @AllArgsConstructor
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"feedbacks", "photos", "states",
-        "account", "type", "contact", "location", "rate"})
+        "user", "type", "contact", "location", "rate"})
 @RequiredArgsConstructor
 public class Object {
     @Id
@@ -32,7 +32,7 @@ public class Object {
     @JoinColumn(name = "account_guid")
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.MERGE)
-    private Account account;
+    private User user;
 
     @Column(nullable = false)
     private String name;

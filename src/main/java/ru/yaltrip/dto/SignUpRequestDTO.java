@@ -2,20 +2,21 @@ package ru.yaltrip.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import ru.yaltrip.model.User;
 
 /**
- * This class presents {@link ru.yaltrip.model.Account} data transfer object (DTO)
+ * This class presents {@link User} data transfer object (DTO)
  * for transfer data between application layers.
  * This DTO class needs for transfer data to server when user registration account.
  */
 @Data
 @Schema
-public class AddAccountDTO {
+public class SignUpRequestDTO {
     @Schema(name = "login",
             title = "Account username",
             type = "String",
             example = "user-1")
-    private String login;
+    private String username;
 
     @Schema(name = "password",
             title = "account password",

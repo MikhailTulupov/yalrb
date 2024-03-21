@@ -11,14 +11,14 @@ import java.util.UUID;
 /**
  * This class represents entity {@link State} witch mean objects and users can have many states,
  * example {@link Object} can have such states: registered, confirmed, working
- * and {@link Account} user can have some states like objects.
+ * and {@link User} user can have some states like objects.
  */
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
 @RequiredArgsConstructor
-@EqualsAndHashCode(exclude = {"objects", "accounts"})
+@EqualsAndHashCode(exclude = {"objects", "users"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -48,5 +48,5 @@ public class State {
             inverseJoinColumns = @JoinColumn(name = "state_guid"))
     @ToString.Exclude
     @Builder.Default
-    private Set<Account> accounts = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 }

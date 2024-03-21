@@ -25,7 +25,7 @@ public class Score {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_guid")
-    private Account account;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "feedback_guid")

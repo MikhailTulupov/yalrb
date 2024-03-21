@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yaltrip.dto.AccountDTO;
-import ru.yaltrip.dto.AddAccountDTO;
+import ru.yaltrip.dto.JwtAuthenticationResponseDTO;
+import ru.yaltrip.dto.SignInRequestDTO;
+import ru.yaltrip.dto.SignUpRequestDTO;
 import ru.yaltrip.mapper.AccountMapper;
-import ru.yaltrip.model.Account;
+import ru.yaltrip.model.User;
 import ru.yaltrip.service.AccountService;
+import ru.yaltrip.service.AuthenticationService;
 import ru.yaltrip.service.LevelService;
 
 /**
@@ -22,25 +24,31 @@ import ru.yaltrip.service.LevelService;
 public class AccountController {
     final AccountService accountService;
     final LevelService levelService;
+    final AuthenticationService authenticationService;
 
     @Autowired
-    public AccountController(AccountService accountService, LevelService levelService) {
+    public AccountController(AccountService accountService,
+                             LevelService levelService,
+                             AuthenticationService authenticationService) {
         this.accountService = accountService;
         this.levelService = levelService;
+        this.authenticationService = authenticationService;
     }
 
     @Operation(summary = "Register a new user")
     @PostMapping(value = "/registration",
             consumes = "application/json",
             produces = "application/json")
-    public AccountDTO addAccount(@RequestBody AddAccountDTO addAccountDTO) {
+    public JwtAuthenticationResponseDTO addAccount(@RequestBody SignUpRequestDTO signUpRequestDTO) {
 
         AccountMapper mapper = Mappers.getMapper(AccountMapper.class);
 
-        Account account = mapper.convertToEntity(addAccountDTO);
+        User user = mapper.convertToEntity(signUpRequestDTO);
 
-        account = accountService.save(account);
 
-        return mapper.convertToDTO(account);
+
+//        user = accountService.save(user);
+
+        return authenticationService.signUp(signUpRequestDTO);
     }
 }
