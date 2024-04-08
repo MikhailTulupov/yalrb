@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Rate} it`s dependent of {@link Object} it`s represent rate this object.
+ * This class is a data model of the YalTrip service. It complements the {@link Object} model.
+ * It`s represent rate this object.
  */
 @AllArgsConstructor
 @Data
@@ -25,9 +26,5 @@ public class Rate {
     @OneToOne(mappedBy = "rate")
     private Object object;
 
-    private int rateFromSite;
-
-    private int rateFromLocation;
-
-    private int rateFromSocialNetwork;
+    private double rate;
 }

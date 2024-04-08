@@ -16,14 +16,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * This class implements {@link JwtService} methods.
+ * This service contains methods for working with the jwt token.
+ */
 @Service
 public class JwtServiceImpl implements JwtService {
     @Value("${jwt.key}")
     private String jwtSecretKey;
 
     @Override
-    public String extractUserName(String token) {
+    public String extractPhoneNumber(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    @Override
+    public String extractEmail(String token) {
+        return null;
     }
 
     @Override
@@ -39,8 +48,8 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String userName = extractUserName(token);
-        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        final String phoneNumber = extractPhoneNumber(token);
+        return (phoneNumber.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
     /**

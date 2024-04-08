@@ -8,14 +8,13 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Contact} it`s dependent of {@link Object}.
- * Entity {@link Contact} contains all required data for contacting to owner this {@link Object}.
+ * This class is a data model of the YalTrip service. It complements the {@link  Object} model.
+ * This model contains everything necessary to be able to contact the owner of this object.
  */
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@EqualsAndHashCode(exclude = "objects")
 @RequiredArgsConstructor
 public class Contact {
     @Id
@@ -36,8 +35,9 @@ public class Contact {
 
     private String siteLink;
 
-    @ToString.Exclude
     @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "contact")
     private Set<Object> objects = new HashSet<>();
 }

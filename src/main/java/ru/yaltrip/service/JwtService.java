@@ -7,12 +7,20 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public interface JwtService {
     /**
-     * Extract username from token.
+     * Extract phone number from token.
      *
      * @param token token
-     * @return username
+     * @return phone number
      */
-    String extractUserName(String token);
+    String extractPhoneNumber(String token);
+
+    /**
+     * Extract email from token.
+     *
+     * @param token token
+     * @return email
+     */
+    String extractEmail(String token);
 
     /**
      * Generate token.

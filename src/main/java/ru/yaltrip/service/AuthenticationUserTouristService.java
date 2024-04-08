@@ -5,9 +5,9 @@ import ru.yaltrip.dto.SignInRequestDTO;
 import ru.yaltrip.dto.SignUpRequestDTO;
 
 /**
- * This interface provides a methods for registration and sign in {@link ru.yaltrip.model.User}.
+ * This interface provides a methods for registration and sign in {@link ru.yaltrip.model.UserTourist}.
  */
-public interface AuthenticationService {
+public interface AuthenticationUserTouristService {
     /**
      * Registration user.
      *

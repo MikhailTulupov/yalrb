@@ -11,44 +11,60 @@ import ru.yaltrip.dto.SignInRequestDTO;
 import ru.yaltrip.dto.SignUpRequestDTO;
 import ru.yaltrip.mapper.AccountMapper;
 import ru.yaltrip.model.Role;
-import ru.yaltrip.model.User;
-import ru.yaltrip.service.AccountService;
-import ru.yaltrip.service.AuthenticationService;
+import ru.yaltrip.model.UserTourist;
+import ru.yaltrip.service.AuthenticationUserTouristService;
 import ru.yaltrip.service.JwtService;
+import ru.yaltrip.service.UserTouristService;
 
+import java.util.Set;
+
+/**
+ * This class implements {@link AuthenticationUserTouristService} methods.
+ * This service provides methods for registration and login in account into service YalTrip.
+ */
 @Service
 @RequiredArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService {
-    private final AccountService accountService;
+public class AuthenticationUserTouristServiceImpl implements AuthenticationUserTouristService {
+    private final UserTouristService userTouristService;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * This method provides an opportunity to register an account in the YalTrip service.
+     * @param request user data
+     * @return JWT token
+     */
     @Override
     public JwtAuthenticationResponseDTO signUp(SignUpRequestDTO request) {
 
         AccountMapper mapper = Mappers.getMapper(AccountMapper.class);
 
-        User user = mapper.convertToEntity(request);
+        UserTourist user = mapper.convertToEntity(request);
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.ROLE_USER);
+        user.setRoles(Set.of(Role.ROLE_TOURIST));
 
-        accountService.save(user);
+        userTouristService.save(user);
 
-        var jwt = jwtService.generateToken(user);
+        String jwt = jwtService.generateToken(user);
 
         return new JwtAuthenticationResponseDTO(jwt);
     }
 
+    /**
+     * This method provides an opportunity to login in account info in the YalTrip service.
+     * @param request user data
+     * @return JWT token
+     */
     @Override
     public JwtAuthenticationResponseDTO signIn(SignInRequestDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getLogin(),
+                request.getPhoneNumber(),
                 request.getPassword()
         ));
 
-        var user = accountService.userDetailsService().loadUserByUsername(request.getLogin());
+        var user = userTouristService.userDetailsService().loadUserByUsername(request.getPhoneNumber());
 
         var jwt = jwtService.generateToken(user);
 

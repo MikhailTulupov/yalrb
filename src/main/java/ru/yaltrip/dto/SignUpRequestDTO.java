@@ -12,20 +12,20 @@ import ru.yaltrip.model.User;
 @Data
 @Schema
 public class SignUpRequestDTO {
-    @Schema(name = "login",
+    @Schema(name = "name",
             title = "Account username",
             type = "String",
             example = "user-1")
-    private String username;
-
-    @Schema(name = "password",
-            title = "account password",
-            example = "qwerty123456")
-    private String password;
+    private String name;
 
     @Schema(name = "phoneNumber",
             title = "phone number",
             type = "String",
             example = "+79999999999")
     private String phoneNumber;
+
+    @Schema(name = "password",
+            title = "account password",
+            example = "qwerty123456")
+    private String password;
 }

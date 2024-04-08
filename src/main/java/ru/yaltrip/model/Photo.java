@@ -10,8 +10,10 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Photo} it`s dependent of entity {@link Object}, it`s represents image,
- * witch user can load to {@link Object} and display on site.
+ * This class is a data model of the YalTrip service. It complements the {@link Object} model.
+ * This model is a photo of an object. This model does not contain the photo itself,
+ * but only the place where this photo is stored in the file storage, the name,
+ * the type of photo (jpeg or png) and the time when the photo was uploaded to the site.
  */
 @AllArgsConstructor
 @Builder
