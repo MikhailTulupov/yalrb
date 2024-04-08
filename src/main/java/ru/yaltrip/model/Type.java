@@ -8,8 +8,9 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Type} it`s dependent of {@link Object}.
- * This class means All objects can have type, such like 'Cultural heritage site'.
+ * This class is a data model of the YalTrip service. It complements the {@link Object} model.
+ * This class means All objects can have type, such like a sanatorium, hotel, recreation center,
+ *  * cultural attraction or natural landmark is located.
  */
 @AllArgsConstructor
 @Builder

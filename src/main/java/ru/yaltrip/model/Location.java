@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Location} it`s dependent of {@link Object}
- * and represents location some place provides longitude and latitude this {@link Object}.
+ * This class is a data model of the YalTrip service. It complements the {@link Object} model.
+ * This model contains geolocation data where the object is located.
  */
 @AllArgsConstructor
 @Builder

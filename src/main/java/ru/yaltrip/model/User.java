@@ -2,80 +2,75 @@ package ru.yaltrip.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
- * This class represents entity {@link User} for site user, witch can log in or sign in.
- * This entity {@link User} have many relationships with others entities:
- * {@link Role}, {@link Level}, {@link Feedback}, {@link Score}, {@link Object} and {@link State}.
+ * This class is an abstract data model of the YalTrip service.
+ * It is the base class for implementing {@link User} roles such as
+ * tourist, entrepreneur, moderator or administrator.
+ * This model represents all the basic fields required by the user.
+ * This class also implements the {@link UserDetails} interface,
+ * which is a necessary part of the Spring Security framework,
+ * to authenticate the user and grant the user the necessary
+ * privileges and rights, depending on his role.
  */
 @AllArgsConstructor
-@Builder
 @Data
-@Entity
-@EqualsAndHashCode(exclude = {"feedbacks", "objects", "scores", "states", "level"})
-@RequiredArgsConstructor
-@Table(name = "account")
-public class User implements UserDetails {
+@NoArgsConstructor
+@SuperBuilder
+@MappedSuperclass
+@EqualsAndHashCode(exclude = {"roles"})
+@ToString(exclude = {"phoneNumber", "email", "password"})
+public abstract class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
-    private UUID id;
+    protected UUID id;
 
     @Column(nullable = false)
-    private String username;
+    protected String name;
+
+    @Column(unique = true)
+    protected String phoneNumber;
+
+    @Column(unique = true)
+    protected String email;
 
     @Column(nullable = false)
-    private String password;
+    protected String password;
+
 
     @Column(nullable = false)
-    private String phoneNumber;
+    protected Date createdDateTime;
 
-    @Column(nullable = false)
-    private Date createdDateTime;
-
+    @Builder.Default
+    @ElementCollection(targetClass = Role.class,
+            fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles",
+            joinColumns =
+            @JoinColumn(name = "user_guid"))
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Role role;
-
-    @ToString.Exclude
-    @JoinColumn(name = "level_guid")
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private Level level;
-
-    @ToString.Exclude
-    @Builder.Default
-    @OneToMany(mappedBy = "user")
-    private Set<Feedback> feedbacks = new HashSet<>();
-
-    @ToString.Exclude
-    @Builder.Default
-    @OneToMany(mappedBy = "user")
-    private Set<Score> scores = new HashSet<>();
-
-    @ToString.Exclude
-    @Builder.Default
-    @OneToMany(mappedBy = "user")
-    private Set<Object> objects = new HashSet<>();
-
-    @ToString.Exclude
-    @Builder.Default
-    @ManyToMany(mappedBy = "users")
-    private Set<State> states = new HashSet<>();
+    protected Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
     }
 
+    /**
+     * Returns the phone number used to authenticate the user.
+     * Cannot return null.
+     * @return phone Number
+     */
     @Override
     public String getUsername() {
-        return username;
+        return phoneNumber;
     }
 
     @Override

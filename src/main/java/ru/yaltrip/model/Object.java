@@ -9,18 +9,18 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * This class represents entity {@link Object} this entity is the main in this project, and it
- * represents itself as some object where something will happen in real life, for example,
- * such a place may be an object of cultural heritage. This entity {@link Object} have many
- * relationships with others entities: {@link User}, {@link Type}, {@link Contact},
- * {@link Rate}, {@link Location}, {@link Feedback}, {@link Photo} and {@link State}.
+ * This class is a data model of the YalTrip service. This model is the main essence of the service,
+ * and it represents an object or place where, for example, a sanatorium, hotel, recreation center,
+ * cultural attraction or natural landmark is located. Other models depend on this model ({@link Contact},
+ * {@link Location}, {@link Photo}, {@link Rate})
+ * and other service models interact with it ({@link User}, {@link Type}).
  */
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@EqualsAndHashCode(exclude = {"feedbacks", "photos", "states",
-        "user", "type", "contact", "location", "rate"})
+@EqualsAndHashCode(exclude = {"photos", "user", "type", "contact", "location", "rate"})
+@ToString(exclude = {"user", "type", "contact", "location", "photos", "rate"})
 @RequiredArgsConstructor
 public class Object {
     @Id
@@ -28,16 +28,14 @@ public class Object {
     @Column(nullable = false)
     private UUID id;
 
-    @ToString.Exclude
-    @JoinColumn(name = "account_guid")
+    @JoinColumn(name = "user_guid")
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.MERGE)
-    private User user;
+    private UserEntrepreneur user;
 
     @Column(nullable = false)
     private String name;
 
-    @ToString.Exclude
     @JoinColumn(name = "type_guid")
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.MERGE)
@@ -53,39 +51,23 @@ public class Object {
 
     private Date eventEndDate;
 
-    @ToString.Exclude
     @JoinColumn(name = "contact_guid")
     @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Contact contact;
 
-    @ToString.Exclude
     @JoinColumn(name = "location_guid")
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Location location;
 
     @Builder.Default
-    @ToString.Exclude
     @OneToMany(mappedBy = "object",
             cascade = CascadeType.ALL)
     private Set<Photo> photos = new HashSet<>();
 
-    @ToString.Exclude
     @JoinColumn(name = "rate_guid")
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Rate rate;
-
-    @Builder.Default
-    @ToString.Exclude
-    @OneToMany(mappedBy = "object",
-            cascade = CascadeType.ALL)
-    private Set<Feedback> feedbacks = new HashSet<>();
-
-    @Builder.Default
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "objects",
-            cascade = CascadeType.ALL)
-    private Set<State> states = new HashSet<>();
 }

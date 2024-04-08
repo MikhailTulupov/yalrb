@@ -9,9 +9,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This utility class provides the methods for stored files.
+ */
 public class FileUtils {
-    private static final String PATH = "/home/mikhail/IdeaProjects/yltrip/images";
+    private static final String PATH = "/home/mikhail/IdeaProjects/yaltrip/images";
 
+    /**
+     * Stored images in file storage.
+     * @param files list of files
+     * @return list of {@link Photo} files
+     */
     public static List<Photo> storedImages(List<MultipartFile> files) {
         List<Photo> photos = new ArrayList<>();
         try {
@@ -24,7 +32,6 @@ public class FileUtils {
                         .description("photo")
                         .build();
 
-
                 photos.add(photo);
 
                 file.transferTo(new File(photo.getPath()));
@@ -32,7 +39,6 @@ public class FileUtils {
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }
-
         return photos;
     }
 }

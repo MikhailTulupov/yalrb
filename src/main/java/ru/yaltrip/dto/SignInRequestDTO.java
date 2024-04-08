@@ -21,11 +21,11 @@ public class SignInRequestDTO {
             type = "UUID",
             examples = "fad53647-1de1-4e64-805d-e8d40c320720")
     private String id;
-    @Schema(name = "login",
-            title = "Account name",
+    @Schema(name = "name",
+            title = "User name",
             type = "String",
-            example = "user-1")
-    private String login;
+            example = "Dmitry")
+    private String name;
     @Schema(name = "password",
             title = "Account password",
             type = "String",
@@ -46,28 +46,5 @@ public class SignInRequestDTO {
                     " one of two privileges 'user' or 'admin'",
             type = "String",
             examples = {"User", "Admin"})
-    private String role;
-
-    @Schema(name = "levelScore",
-            title = "level score",
-            type = "int",
-            example = "0")
-    private int levelScore;
-
-    @Schema(name = "typeLevel",
-            title = "type level",
-            type = "String",
-            example = "Stranger")
-    private String levelType;
-
-    @Schema(name = "objects",
-            title = "array created objects",
-            type = "array",
-            example = """
-                    [
-                        "fad53647-1de1-4e64-805d-e8d40c320722",
-                        "fad53647-1de1-4e64-805d-e8d40c320721"
-                    ]
-                    """)
-    private List<String> objects;
+    private List<String> role;
 }
