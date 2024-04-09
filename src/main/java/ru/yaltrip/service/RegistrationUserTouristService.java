@@ -1,20 +1,20 @@
 package ru.yaltrip.service;
 
-import ru.yaltrip.dto.JwtAuthenticationResponseDTO;
+import ru.yaltrip.channel.model.JwtAuthenticationResponseDTO;
 import ru.yaltrip.dto.SignInRequestDTO;
-import ru.yaltrip.dto.SignUpRequestDTO;
+import ru.yaltrip.model.UserTourist;
 
 /**
  * This interface provides a methods for registration and sign in {@link ru.yaltrip.model.UserTourist}.
  */
-public interface AuthenticationUserTouristService {
+public interface RegistrationUserTouristService {
     /**
      * Registration user.
      *
-     * @param request user data
+     * @param user user data
      * @return token
      */
-    JwtAuthenticationResponseDTO signUp(SignUpRequestDTO request);
+    UserTourist registration(UserTourist user);
 
     /**
      * User Authentication.

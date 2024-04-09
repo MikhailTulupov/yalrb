@@ -12,8 +12,8 @@ import lombok.*;
  */
 @AllArgsConstructor
 @Builder(access = AccessLevel.PROTECTED)
+@Data
 @Entity
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class UserTourist extends User {

@@ -1,11 +1,10 @@
-package ru.yaltrip.dto;
+package ru.yaltrip.channel.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import ru.yaltrip.model.User;
 
 /**
  * This class presents JWT token data transfer object (DTO)

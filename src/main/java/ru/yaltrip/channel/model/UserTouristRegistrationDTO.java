@@ -1,4 +1,4 @@
-package ru.yaltrip.dto;
+package ru.yaltrip.channel.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -11,11 +11,11 @@ import ru.yaltrip.model.User;
  */
 @Data
 @Schema
-public class SignUpRequestDTO {
+public class UserTouristRegistrationDTO {
     @Schema(name = "name",
-            title = "Account username",
+            title = "First name user",
             type = "String",
-            example = "user-1")
+            example = "Misha")
     private String name;
 
     @Schema(name = "phoneNumber",
@@ -23,6 +23,12 @@ public class SignUpRequestDTO {
             type = "String",
             example = "+79999999999")
     private String phoneNumber;
+
+    @Schema(name = "email",
+            title = "e-mail",
+            type = "String",
+            example = "example@example.com")
+    private String email;
 
     @Schema(name = "password",
             title = "account password",

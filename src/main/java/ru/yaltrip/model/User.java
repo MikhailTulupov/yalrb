@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
  * privileges and rights, depending on his role.
  */
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
+@Data
 @SuperBuilder
 @MappedSuperclass
 @EqualsAndHashCode(exclude = {"roles"})

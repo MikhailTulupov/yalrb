@@ -1,4 +1,4 @@
-package ru.yaltrip.service.implementation;
+package ru.yaltrip.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import ru.yaltrip.model.UserEntrepreneur;
 import ru.yaltrip.repository.ObjectRepository;
 import ru.yaltrip.repository.TypeRepository;
 import ru.yaltrip.repository.UserEntrepreneurRepository;
-import ru.yaltrip.service.ObjectService;
 
 /**
  * This class implements {@link ObjectService} methods for manipulating object model.
