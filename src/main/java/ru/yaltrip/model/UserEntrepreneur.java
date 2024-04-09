@@ -21,6 +21,11 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, exclude = {"objects"})
 @ToString(callSuper = true, exclude = {"objects"})
 public class UserEntrepreneur extends User {
+
+    private String companyName;
+
+    private String taxpayerNumberId;
+
     @Builder.Default
     @OneToMany(mappedBy = "user")
     private Set<Object> objects = new HashSet<>();

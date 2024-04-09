@@ -1,4 +1,4 @@
-package ru.yaltrip.service.implementation;
+package ru.yaltrip.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.yaltrip.model.UserTourist;
 import ru.yaltrip.repository.UserTouristRepository;
-import ru.yaltrip.service.UserTouristService;
 
 import java.util.Date;
 
@@ -30,11 +29,9 @@ public class UserTouristServiceImpl implements UserTouristService {
      */
     @Override
     public UserTourist save(UserTourist entity) {
-
         if (userTouristRepository.existsByPhoneNumber(entity.getPhoneNumber())) {
             throw new RuntimeException("A user with that phone number already exists");
         }
-
         entity.setCreatedDateTime(new Date());
 
         return userTouristRepository.save(entity);
