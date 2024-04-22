@@ -40,7 +40,7 @@ public class RegistrationController {
     public ResponseEntity<String> touristRegistration(@RequestBody
                                                       UserTouristRegistrationDTO userTouristRegistrationDTO) {
 
-        UserTourist userTourist = registrationService.convertToUserTourist(userTouristRegistrationDTO);
+        UserTourist userTourist = (UserTourist) registrationService.convertTo(userTouristRegistrationDTO);
         userTourist = registrationUserTouristService.registration(userTourist);
         String token = jwtService.generateToken(userTourist);
 
@@ -53,8 +53,8 @@ public class RegistrationController {
 
     @Operation(summary = "Registration a new user with role tourist")
     @PostMapping(value = "/entrepreneur",
-                consumes = "application/json",
-                produces = "application/json")
+            consumes = "application/json",
+            produces = "application/json")
     public ResponseEntity<String> entrepreneurRegistration(@RequestBody
                                                            UserEntrepreneurRegistrationDTO userEntrepreneurRegistrationDTO) {
         UserEntrepreneur userEntrepreneur = registrationService.convertToUserEntrepreneur(userEntrepreneurRegistrationDTO);

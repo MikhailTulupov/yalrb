@@ -5,12 +5,12 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import ru.yaltrip.channel.model.UserTouristRegistrationDTO;
 import ru.yaltrip.dto.SignInRequestDTO;
-import ru.yaltrip.model.User;
+import ru.yaltrip.model.AbstractUser;
 import ru.yaltrip.model.UserTourist;
 
 /**
  * This interface provides methods for convert dto object {@link UserTouristRegistrationDTO}
- * to entity (POJO) {@link User} or entity (POJO) {@link User} to dto object {@link SignInRequestDTO}.
+ * to entity (POJO) {@link AbstractUser} or entity (POJO) {@link AbstractUser} to dto object {@link SignInRequestDTO}.
  */
 @Mapper(componentModel = "spring")
 public interface UserTouristMapper {

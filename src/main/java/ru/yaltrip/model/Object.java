@@ -13,7 +13,7 @@ import java.util.UUID;
  * and it represents an object or place where, for example, a sanatorium, hotel, recreation center,
  * cultural attraction or natural landmark is located. Other models depend on this model ({@link Contact},
  * {@link Location}, {@link Photo}, {@link Rate})
- * and other service models interact with it ({@link User}, {@link Type}).
+ * and other service models interact with it ({@link AbstractUser}, {@link Type}).
  */
 @AllArgsConstructor
 @Builder
