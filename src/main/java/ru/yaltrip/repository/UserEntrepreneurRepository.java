@@ -11,5 +11,6 @@ import java.util.UUID;
  * about the {@link UserEntrepreneur} type and provide an open CRUD.
  */
 @Repository
-public interface UserEntrepreneurRepository extends JpaRepository<UserEntrepreneur, UUID> {
+public interface UserEntrepreneurRepository extends
+        JpaRepository<UserEntrepreneur, UUID>, UserRepository<UserEntrepreneur> {
 }

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 /**
  * This class is an abstract data model of the YalTrip service.
- * It is the base class for implementing {@link User} roles such as
+ * It is the base class for implementing {@link AbstractUser} roles such as
  * tourist, entrepreneur, moderator or administrator.
  * This model represents all the basic fields required by the user.
  * This class also implements the {@link UserDetails} interface,
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
  * privileges and rights, depending on his role.
  */
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
+@Data
 @SuperBuilder
 @MappedSuperclass
 @EqualsAndHashCode(exclude = {"roles"})
 @ToString(exclude = {"phoneNumber", "email", "password"})
-public abstract class User implements UserDetails {
+public abstract class AbstractUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)

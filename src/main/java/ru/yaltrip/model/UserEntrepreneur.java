@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * This class is a data model of the YalTrip service.
- * It is inherited from the {@link User} base class and
+ * It is inherited from the {@link AbstractUser} base class and
  * represents a regular user of the site with the role of an entrepreneur.
  * An entrepreneur is given slightly more privileges than a tourist user.
  * For example, it can create new objects that a regular user cannot.
@@ -20,7 +20,12 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = {"objects"})
 @ToString(callSuper = true, exclude = {"objects"})
-public class UserEntrepreneur extends User {
+public class UserEntrepreneur extends AbstractUser {
+
+    private String companyName;
+
+    private String taxpayerNumberId;
+
     @Builder.Default
     @OneToMany(mappedBy = "user")
     private Set<Object> objects = new HashSet<>();

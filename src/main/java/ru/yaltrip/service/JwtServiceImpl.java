@@ -1,4 +1,4 @@
-package ru.yaltrip.service.implementation;
+package ru.yaltrip.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -7,8 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import ru.yaltrip.model.User;
-import ru.yaltrip.service.JwtService;
+import ru.yaltrip.model.AbstractUser;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -32,16 +31,16 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public String extractEmail(String token) {
-        return null;
+        return extractClaim(token, Claims::getSubject);
     }
 
     @Override
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        if (userDetails instanceof User customUserDetails) {
+        if (userDetails instanceof AbstractUser customUserDetails) {
             claims.put("id", customUserDetails.getId());
             claims.put("phoneNumber", customUserDetails.getPhoneNumber());
-            claims.put("role", customUserDetails.getId());
+            claims.put("role", customUserDetails.getRoles());
         }
         return generateToken(claims, userDetails);
     }

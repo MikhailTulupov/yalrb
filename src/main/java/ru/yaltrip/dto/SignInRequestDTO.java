@@ -3,12 +3,12 @@ package ru.yaltrip.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
-import ru.yaltrip.model.User;
+import ru.yaltrip.model.AbstractUser;
 
 import java.util.List;
 
 /**
- * This class presents {@link User} data transfer object (DTO)
+ * This class presents {@link AbstractUser} data transfer object (DTO)
  * for transfer data between application layers.
  * This DTO class needs for transfer data from server when user complete registration or log in.
  */

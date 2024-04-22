@@ -3,21 +3,18 @@ package ru.yaltrip.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import ru.yaltrip.channel.model.UserEntrepreneurRegistrationDTO;
+import ru.yaltrip.channel.model.UserTouristRegistrationDTO;
 import ru.yaltrip.dto.SignInRequestDTO;
-import ru.yaltrip.dto.SignUpRequestDTO;
-import ru.yaltrip.model.User;
+import ru.yaltrip.model.UserEntrepreneur;
 import ru.yaltrip.model.UserTourist;
 
-/**
- * This interface provides methods for convert dto object {@link SignUpRequestDTO}
- * to entity (POJO) {@link User} or entity (POJO) {@link User} to dto object {@link SignInRequestDTO}.
- */
 @Mapper(componentModel = "spring")
-public interface AccountMapper {
+public interface UserEntrepreneurMapper {
     /**
-     * Mapping {@link SignUpRequestDTO} transfer model to POJO {@link UserTourist}
+     * Mapping {@link UserTouristRegistrationDTO} transfer model to POJO {@link UserTourist}
      *
-     * @param signUpRequestDTO data transfer model
+     * @param userEntrepreneurRegistrationDTO data transfer model
      * @return POJO entity
      */
     @Mappings({
@@ -25,7 +22,7 @@ public interface AccountMapper {
             @Mapping(target = "createdDateTime", ignore = true),
             @Mapping(target = "roles", ignore = true),
     })
-    UserTourist convertToEntity(SignUpRequestDTO signUpRequestDTO);
+    UserEntrepreneur convertToEntity(UserEntrepreneurRegistrationDTO userEntrepreneurRegistrationDTO);
 
     /**
      * Mapping {@link UserTourist} java entity to data transfer model {@link SignInRequestDTO}
